@@ -1,7 +1,7 @@
 NAME		= libftprintf.a
 LIBFT_DIR	= ./libft
 LIBFT_A		= $(LIBFT_DIR)/libft.a
-CC			= clang
+CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 SRCS		= ft_printf.c
@@ -13,8 +13,7 @@ OBJS		= $(SRCS:%.c=%.o)
 all:	$(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_A)
-	$(RM) $(NAME)
-	ar -rcs $(NAME) $(OBJS) $(LIBFT_A)
+	ar -rcs $(NAME) $(OBJS)
 	
 $(LIBFT_A):
 	make --directory=$(LIBFT_DIR)
@@ -30,6 +29,6 @@ fclean: clean
 re:		fclean all
 
 test: all
-	$(CC) $(CFLAGS) -g main.c -L. -lftprintf && ./a.out
+	$(CC) $(CFLAGS) main.c -L. -lftprintf -L./libft -lft && ./a.out
 
 .PHONY:	all clean fclean re
