@@ -19,7 +19,18 @@ int main()
 	ft_printf("42 | String	->(%s)\n", str);
 	og_printf("og | Pointer	->(%p)\n", str);
 	ft_printf("42 | Pointer	->(%p)\n", str);
-	// ft_printf("42 | Pointer	->(%p)\n", str);
+	og_printf("og | Decimal	->(%d)\n", 123);
+	ft_printf("42 | Decimal	->(%d)\n", 123);
+	og_printf("og | Integer	->(%i)\n", 42);
+	ft_printf("42 | Integer	->(%i)\n", 42);
+	og_printf("og | U Int	->(%u)\n", -42);
+	ft_printf("42 | U Int	->(%u)\n", -42);
+	og_printf("og | Low Hex	->(%x)\n", 123);
+	ft_printf("ft | Low Hex	->(%x)\n", 123);
+	og_printf("og | Up Hex	->(%X)\n", 123);
+	ft_printf("ft | Up Hex	->(%X)\n", 123);
+	og_printf("og | Percent	->(%%)\n", 42);
+	ft_printf("ft | Percent	->(%%)\n", 42);
 
 	// ft_printf("ft | Char ->(%0c)\n", 'a');
 	// og_printf("Int      ->(% i) (%   i)\n", 123, 998);

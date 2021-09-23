@@ -48,17 +48,105 @@ void print_in_hex(int number, int *printed_size)
 	}
 }
 
+void print_in_upper_hex(int number, int *printed_size)
+{
+	char  *base;
+	base = "0123456789ABDFEG";
+
+	if (number < 16)
+	{
+		write(1, (base + number), 1);
+		printed_size++;
+	}
+	else
+	{
+		print_in_upper_hex(number / 16, printed_size);
+		print_in_upper_hex(number % 16, printed_size);
+	}
+}
+
 int	handle_pointer(va_list args, int *printed_size)
 {
-	char				*str;
-	unsigned int		p;
+	char			*pointer;
+	unsigned int	i;
 
 	write(1, "0x10", 4);
 	printed_size += 2;
-	str = va_arg(args, char *);
-	p = (unsigned long)str;
-	print_in_hex(p, printed_size);
+	pointer = va_arg(args, char *);
+	i = (unsigned long)pointer;
+	print_in_hex(i, printed_size);
 	return (1);
+}
+
+int handle_number(va_list args, int *printed_size)
+{
+	int i;
+	i = va_arg(args, int);
+	char *str = ft_itoa(i);
+	ft_putstr_fd(str,1);
+	printed_size += ft_strlen(str);
+	return(1);
+}
+
+static int	digits_in_number(unsigned int n)
+{
+	if (n < 0 && n / 10 == 0)
+		return (2);
+	if (n / 10 == 0)
+		return (1);
+	return (1 + digits_in_number(n / 10));
+}
+
+static char		*uitoa(unsigned int n)
+{
+	char	*str;
+	int		digits;
+
+	digits = digits_in_number(n);
+	if (!(str = malloc(sizeof(char) * (digits + 1))))
+		return (NULL);
+	str[digits] = '\0';
+	while (n >= 10)
+	{
+		str[--digits] = '0' + n % 10;
+		n = n / 10;
+	}
+	str[--digits] = '0' + n % 10;
+	return (str);
+}
+
+int handle_unsigned(va_list args, int *printed_size)
+{
+	unsigned int i;
+	i = va_arg(args, unsigned int);
+	char *str = uitoa(i);
+	ft_putstr_fd(str,1);
+	printed_size += ft_strlen(str);
+	return(1);
+}
+
+int handle_lower_hex(va_list args, int *printed_size)
+{
+	int i;
+	i = va_arg(args, int);
+	print_in_hex(i, printed_size);
+	return(1);
+}
+
+int handle_upper_hex(va_list args, int *printed_size)
+{
+	int i;
+	i = va_arg(args, int);
+	print_in_upper_hex(i, printed_size);
+	return(1);
+}
+
+int handle_percent(va_list args, int *printed_size)
+{
+	if (args){};
+	printed_size++;
+	write(1,"%",1);
+	return(1);
 }
 
 t_handler_function get_type_handler_function(char type)
@@ -67,6 +155,12 @@ t_handler_function get_type_handler_function(char type)
 		{'c', handle_char},
 		{'s', handle_string},
 		{'p', handle_pointer},
+		{'d', handle_number},
+		{'i', handle_number},
+		{'u', handle_unsigned},
+		{'x', handle_lower_hex},
+		{'X', handle_upper_hex},
+		{'%', handle_percent},
 		{0, 0}
 	};
 	t_lookup_table *cursor = table;
@@ -83,7 +177,10 @@ int interpolate_placeholder(const char *str, va_list args, int *printed_size)
 {
 	t_handler_function handler_function;
 	handler_function = get_type_handler_function(*str);
-	return (handler_function(args, printed_size));
+	if (handler_function)
+		return (handler_function(args, printed_size));
+	else
+		return(1);
 }
 
 int	ft_printf(const char *str, ...)
