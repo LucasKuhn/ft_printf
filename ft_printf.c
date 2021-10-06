@@ -25,13 +25,19 @@ int	handle_string(va_list args, int *printed_size)
 	int		len;
 
 	str = va_arg(args, char *);
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		*printed_size += 6;
+		return (1);
+	}
 	len = ft_strlen(str);
 	*printed_size += len;
 	write(1, str, sizeof(*str) * len);
 	return (1); // Return the size of %s, since there is no flags it is 1
 }
 
-void print_in_hex(int number, int *printed_size)
+void print_in_hex(unsigned long int number, int *printed_size)
 {
 	char  *base;
 	base = "0123456789abcdef";
@@ -39,7 +45,7 @@ void print_in_hex(int number, int *printed_size)
 	if (number < 16)
 	{
 		write(1, (base + number), 1);
-		printed_size++;
+		*printed_size += 1;
 	}
 	else
 	{
@@ -48,15 +54,15 @@ void print_in_hex(int number, int *printed_size)
 	}
 }
 
-void print_in_upper_hex(int number, int *printed_size)
+void print_in_upper_hex(unsigned long int number, int *printed_size)
 {
 	char  *base;
-	base = "0123456789ABDFEG";
+	base = "0123456789ABCDEFG";
 
 	if (number < 16)
 	{
 		write(1, (base + number), 1);
-		printed_size++;
+		*printed_size += 1;
 	}
 	else
 	{
@@ -67,14 +73,12 @@ void print_in_upper_hex(int number, int *printed_size)
 
 int	handle_pointer(va_list args, int *printed_size)
 {
-	char			*pointer;
-	unsigned int	i;
+	void	* pointer;
 
-	write(1, "0x10", 4);
-	printed_size += 2;
-	pointer = va_arg(args, char *);
-	i = (unsigned long)pointer;
-	print_in_hex(i, printed_size);
+	write(1, "0x", 2);
+	*printed_size += 2;
+	pointer = va_arg(args, void *);
+	print_in_hex((unsigned long) pointer, printed_size);
 	return (1);
 }
 
@@ -84,7 +88,8 @@ int handle_number(va_list args, int *printed_size)
 	i = va_arg(args, int);
 	char *str = ft_itoa(i);
 	ft_putstr_fd(str,1);
-	printed_size += ft_strlen(str);
+	*printed_size += ft_strlen(str);
+	free(str);
 	return(1);
 }
 
@@ -121,22 +126,23 @@ int handle_unsigned(va_list args, int *printed_size)
 	i = va_arg(args, unsigned int);
 	char *str = uitoa(i);
 	ft_putstr_fd(str,1);
-	printed_size += ft_strlen(str);
+	*printed_size += ft_strlen(str);
+	free(str);
 	return(1);
 }
 
 int handle_lower_hex(va_list args, int *printed_size)
 {
-	int i;
-	i = va_arg(args, int);
+	unsigned int i;
+	i = va_arg(args, unsigned int);
 	print_in_hex(i, printed_size);
 	return(1);
 }
 
 int handle_upper_hex(va_list args, int *printed_size)
 {
-	int i;
-	i = va_arg(args, int);
+	unsigned int i;
+	i = va_arg(args, unsigned int);
 	print_in_upper_hex(i, printed_size);
 	return(1);
 }
@@ -144,7 +150,7 @@ int handle_upper_hex(va_list args, int *printed_size)
 int handle_percent(va_list args, int *printed_size)
 {
 	if (args){};
-	printed_size++;
+	*printed_size += 1;
 	write(1,"%",1);
 	return(1);
 }
@@ -178,7 +184,9 @@ int interpolate_placeholder(const char *str, va_list args, int *printed_size)
 	t_handler_function handler_function;
 	handler_function = get_type_handler_function(*str);
 	if (handler_function)
+	{
 		return (handler_function(args, printed_size));
+	}
 	else
 		return(1);
 }
@@ -195,7 +203,8 @@ int	ft_printf(const char *str, ...)
 		if (*str == '%')
 		{
 			str++;
-			str += interpolate_placeholder(str, args, &printed_size);
+			interpolate_placeholder(str, args, &printed_size);
+			str++;
 		}
 		else
 		{

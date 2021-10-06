@@ -17,6 +17,7 @@ $(NAME): $(OBJS) $(LIBFT_A)
 	
 $(LIBFT_A):
 	make --directory=$(LIBFT_DIR)
+	cp $(LIBFT_DIR)/libft.a $(NAME)
 
 clean:
 	make $@ --directory=$(LIBFT_DIR)

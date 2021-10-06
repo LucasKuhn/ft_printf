@@ -13,32 +13,44 @@ printf_alias og_printf = printf;
 int main()
 {
 	char *str = "Bonjour";
-	og_printf("og | Char	->(%c)\n", 'A');
-	ft_printf("42 | Char	->(%c)\n", 'A');
-	og_printf("og | String	->(%s)\n", str);
-	ft_printf("42 | String	->(%s)\n", str);
-	og_printf("og | Pointer	->(%p)\n", str);
-	ft_printf("42 | Pointer	->(%p)\n", str);
-	og_printf("og | Decimal	->(%d)\n", 123);
-	ft_printf("42 | Decimal	->(%d)\n", 123);
-	og_printf("og | Integer	->(%i)\n", 42);
-	ft_printf("42 | Integer	->(%i)\n", 42);
-	og_printf("og | U Int	->(%u)\n", -42);
-	ft_printf("42 | U Int	->(%u)\n", -42);
-	og_printf("og | Low Hex	->(%x)\n", 123);
-	ft_printf("ft | Low Hex	->(%x)\n", 123);
-	og_printf("og | Up Hex	->(%X)\n", 123);
-	ft_printf("ft | Up Hex	->(%X)\n", 123);
-	og_printf("og | Percent	->(%%)\n", 42);
-	ft_printf("ft | Percent	->(%%)\n", 42);
-
-	// ft_printf("ft | Char ->(%0c)\n", 'a');
-	// og_printf("Int      ->(% i) (%   i)\n", 123, 998);
+	og_printf("og | Char		->(%c)\n", 'A');
+	ft_printf("42 | Char		->(%c)\n", 'A');
+	og_printf("og | String		->(%s)\n", str);
+	ft_printf("42 | String		->(%s)\n", str);
+	og_printf("og | String null	->(%s)\n", NULL);
+	ft_printf("42 | String null	->(%s)\n", NULL);
+	og_printf("og | Pointer		->(%p)\n", str);
+	ft_printf("42 | Pointer		->(%p)\n", str);
+	og_printf("og | Pointer 1		->(%p)\n", 1);
+	ft_printf("42 | Pointer 1		->(%p)\n", 1);
+	og_printf("og | Pointer -1		->(%p)\n", -1);
+	ft_printf("42 | Pointer -1		->(%p)\n", -1);
+	og_printf("og | Decimal		->(%d)\n", 123);
+	ft_printf("42 | Decimal		->(%d)\n", 123);
+	og_printf("og | Integer		->(%i)\n", 42);
+	ft_printf("42 | Integer		->(%i)\n", 42);
+	og_printf("og | Unsigned  Int	->(%u)\n", -42);
+	ft_printf("42 | Unsigned  Int	->(%u)\n", -42);
+	og_printf("og | Lowercase Hex	->(%x)\n", -9);
+	ft_printf("ft | Lowercase Hex	->(%x)\n", -9);
+	og_printf("og | Lowercase Hex	->(%x)\n", 9223372036854775807L);
+	ft_printf("ft | Lowercase Hex	->(%x)\n", 9223372036854775807L);
+	og_printf("og | Uppercase Hex	->(%X)\n", -1);
+	ft_printf("ft | Uppercase Hex	->(%X)\n", -1);
+	og_printf("og | Uppercase Hex	->(%X)\n", 15);
+	ft_printf("ft | Uppercase Hex	->(%X)\n", 15);
+	og_printf("og | Percent sign 	->(%%)\n", 42);
+	ft_printf("ft | Percent sign 	->(%%)\n", 42);
 
 	printf("\n~~ RETURN CHECK ~~\n");
 	write(1,"og | ",5);
 	printf(" ->(%d)\n", og_printf("Oui%c",'!'));
 	write(1,"42 | ",5);
 	printf(" ->(%d)\n", ft_printf("Oui%c",'!'));
+
+	write(1,"og | ",5);
+	printf(" ->(%d)\n", og_printf("%i",443322));
+	write(1,"42 | ",5);
+	printf(" ->(%d)\n", ft_printf("%i",443322));
 
 }
