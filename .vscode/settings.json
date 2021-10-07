@@ -1,6 +1,10 @@
 {
 	"files.associations": {
 		"ios": "c",
-		"__locale": "c"
+		"__locale": "c",
+		"bitset": "c",
+		"functional": "c",
+		"iterator": "c",
+		"memory": "c"
 	}
 }

@@ -4,7 +4,7 @@ LIBFT_A		= $(LIBFT_DIR)/libft.a
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
-SRCS		= ft_printf.c
+SRCS		= ft_printf.c ft_hexhandlers.c ft_numberhandlers.c ft_stringhandlers.c
 OBJS		= $(SRCS:%.c=%.o)
 
 .c.o:

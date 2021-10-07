@@ -1,18 +1,19 @@
 #include "ft_printf.h"
+#include <stdio.h>
 
-# include <stdio.h>
-
-typedef int (*printf_alias)(const char * , ...);
-printf_alias og_printf = printf;
+typedef int		(*printf_alias)(const char *, ...);
+printf_alias	og_printf = printf;
 
 // %[parameter][flags][width][.precision][length]type
 // cspdiuxX%
 // ’-0.’
 // ’# +’
 
-int main()
+int				main()
 {
-	char *str = "Bonjour";
+	char	*str;
+
+	str = "Bonjour";
 	og_printf("og | Char		->(%c)\n", 'A');
 	ft_printf("42 | Char		->(%c)\n", 'A');
 	og_printf("og | String		->(%s)\n", str);
@@ -21,10 +22,10 @@ int main()
 	ft_printf("42 | String null	->(%s)\n", NULL);
 	og_printf("og | Pointer		->(%p)\n", str);
 	ft_printf("42 | Pointer		->(%p)\n", str);
-	og_printf("og | Pointer 1		->(%p)\n", 1);
-	ft_printf("42 | Pointer 1		->(%p)\n", 1);
-	og_printf("og | Pointer -1		->(%p)\n", -1);
-	ft_printf("42 | Pointer -1		->(%p)\n", -1);
+	og_printf("og | Pointer		->(%p)\n", 1);
+	ft_printf("42 | Pointer		->(%p)\n", 1);
+	og_printf("og | Pointer		->(%p)\n", -1);
+	ft_printf("42 | Pointer		->(%p)\n", -1);
 	og_printf("og | Decimal		->(%d)\n", 123);
 	ft_printf("42 | Decimal		->(%d)\n", 123);
 	og_printf("og | Integer		->(%i)\n", 42);
@@ -41,16 +42,13 @@ int main()
 	ft_printf("ft | Uppercase Hex	->(%X)\n", 15);
 	og_printf("og | Percent sign 	->(%%)\n", 42);
 	ft_printf("ft | Percent sign 	->(%%)\n", 42);
-
 	printf("\n~~ RETURN CHECK ~~\n");
-	write(1,"og | ",5);
-	printf(" ->(%d)\n", og_printf("Oui%c",'!'));
-	write(1,"42 | ",5);
-	printf(" ->(%d)\n", ft_printf("Oui%c",'!'));
-
-	write(1,"og | ",5);
-	printf(" ->(%d)\n", og_printf("%i",443322));
-	write(1,"42 | ",5);
-	printf(" ->(%d)\n", ft_printf("%i",443322));
-
+	write(1, "og | ", 5);
+	printf(" ->(%d)\n", og_printf("Oui%c", '!'));
+	write(1, "42 | ", 5);
+	printf(" ->(%d)\n", ft_printf("Oui%c", '!'));
+	write(1, "og | ", 5);
+	printf(" ->(%d)\n", og_printf("%i", 443322));
+	write(1, "42 | ", 5);
+	printf(" ->(%d)\n", ft_printf("%i", 443322));
 }
