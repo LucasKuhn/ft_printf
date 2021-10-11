@@ -6,7 +6,7 @@
 /*   By: lalexk-ku <lalex-ku@42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 22:09:26 by lalexk-ku         #+#    #+#             */
-/*   Updated: 2021/10/06 22:09:27 by lalexk-ku        ###   ########.fr       */
+/*   Updated: 2021/10/11 18:04:36 by lalexk-ku        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	handle_char(va_list args, int *printed_size)
 	char	c;
 
 	c = va_arg(args, int);
-	ft_putchar_fd(c, 1);
-	*printed_size += 1;
+	*printed_size += write(1, &c, 1);
 	return ;
 }
 
@@ -30,20 +29,16 @@ void	handle_string(va_list args, int *printed_size)
 	str = va_arg(args, char *);
 	if (!str)
 	{
-		write(1, "(null)", 6);
-		*printed_size += 6;
+		*printed_size += write(1, "(null)", 6);
 		return ;
 	}
-	len = ft_strlen(str);
-	ft_putstr_fd(str, 1);
-	*printed_size += len;
+	*printed_size += write(1, str, ft_strlen(str));
 	return ;
 }
 
 void	handle_percent(va_list args, int *printed_size)
 {
 	if (args)
-		*printed_size += 1;
-	write(1, "%", 1);
+		*printed_size += write(1, "%", 1);
 	return ;
 }

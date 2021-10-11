@@ -6,7 +6,7 @@
 /*   By: lalexk-ku <lalex-ku@42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 22:09:33 by lalexk-ku         #+#    #+#             */
-/*   Updated: 2021/10/06 22:12:39 by lalexk-ku        ###   ########.fr       */
+/*   Updated: 2021/10/11 18:01:11 by lalexk-ku        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	handle_number(va_list args, int *printed_size)
 
 	i = va_arg(args, int);
 	str = ft_itoa(i);
-	ft_putstr_fd(str, 1);
-	*printed_size += ft_strlen(str);
+	*printed_size += write(1, str, ft_strlen(str));
 	free(str);
 	return ;
 }
@@ -35,8 +34,7 @@ void	handle_unsigned(va_list args, int *printed_size)
 
 	i = va_arg(args, unsigned int);
 	str = uitoa(i);
-	ft_putstr_fd(str, 1);
-	*printed_size += ft_strlen(str);
+	*printed_size += write(1, str, ft_strlen(str));
 	free(str);
 	return ;
 }

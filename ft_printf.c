@@ -6,7 +6,7 @@
 /*   By: lalexk-ku <lalex-ku@42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 22:09:40 by lalexk-ku         #+#    #+#             */
-/*   Updated: 2021/10/06 22:12:57 by lalexk-ku        ###   ########.fr       */
+/*   Updated: 2021/10/11 17:39:30 by lalexk-ku        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ int	ft_printf(const char *str, ...)
 			handler_function(args, &printed_size);
 		}
 		else
-		{
-			ft_putchar_fd(*str, 1);
-			printed_size++;
-		}
+			printed_size += write(1, str, 1);
 		str++;
 	}
 	va_end(args);
