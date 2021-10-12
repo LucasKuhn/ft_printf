@@ -6,7 +6,7 @@
 /*   By: lalexk-ku <lalex-ku@42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 22:09:26 by lalexk-ku         #+#    #+#             */
-/*   Updated: 2021/10/11 18:04:36 by lalexk-ku        ###   ########.fr       */
+/*   Updated: 2021/10/11 20:21:43 by lalexk-ku        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	handle_char(va_list args, int *printed_size)
 void	handle_string(va_list args, int *printed_size)
 {
 	char	*str;
-	int		len;
 
 	str = va_arg(args, char *);
 	if (!str)

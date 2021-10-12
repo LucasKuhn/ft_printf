@@ -6,7 +6,7 @@
 /*   By: lalexk-ku <lalex-ku@42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:11:47 by lalexk-ku         #+#    #+#             */
-/*   Updated: 2021/10/11 18:11:48 by lalexk-ku        ###   ########.fr       */
+/*   Updated: 2021/10/11 20:44:35 by lalexk-ku        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	main()
 	ft_printf("42 | Integer		->(%i)\n", 42);
 	og_printf("og | Unsigned  Int	->(%u)\n", -42);
 	ft_printf("42 | Unsigned  Int	->(%u)\n", -42);
-	og_printf("og | Lowercase Hex	->(%x)\n", -9);
-	ft_printf("ft | Lowercase Hex	->(%x)\n", -9);
+	og_printf("og | Lowercase Hex	->(%x)\n", 123);
+	ft_printf("ft | Lowercase Hex	->(%x)\n", 123);
 	og_printf("og | Lowercase Hex	->(%x)\n", 9223372036854775807L);
 	ft_printf("ft | Lowercase Hex	->(%x)\n", 9223372036854775807L);
 	og_printf("og | Uppercase Hex	->(%X)\n", -1);
