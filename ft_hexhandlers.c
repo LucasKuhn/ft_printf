@@ -6,7 +6,7 @@
 /*   By: lalexk-ku <lalex-ku@42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 22:09:30 by lalexk-ku         #+#    #+#             */
-/*   Updated: 2021/10/11 21:23:24 by lalexk-ku        ###   ########.fr       */
+/*   Updated: 2021/10/12 20:55:32 by lalexk-ku        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,13 @@ void	handle_pointer(va_list args, int *printed_size)
 {
 	void	*pointer;
 
-	*printed_size += write(1, "0x", 2);
 	pointer = va_arg(args, void *);
+	if (!pointer && !IS_MACOS)
+	{
+		*printed_size += write(1, "(nil)", 5);
+		return ;
+	}
+	*printed_size += write(1, "0x", 2);
 	print_in_lower_hex((unsigned long)pointer, printed_size);
 	return ;
 }

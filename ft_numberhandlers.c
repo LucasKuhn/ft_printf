@@ -6,7 +6,7 @@
 /*   By: lalexk-ku <lalex-ku@42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 22:09:33 by lalexk-ku         #+#    #+#             */
-/*   Updated: 2021/10/11 18:01:11 by lalexk-ku        ###   ########.fr       */
+/*   Updated: 2021/10/12 20:12:25 by lalexk-ku        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	handle_unsigned(va_list args, int *printed_size)
 
 static int	digits_in_number(unsigned int n)
 {
-	if (n < 0 && n / 10 == 0)
-		return (2);
 	if (n / 10 == 0)
 		return (1);
 	return (1 + digits_in_number(n / 10));

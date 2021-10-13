@@ -6,12 +6,18 @@
 /*   By: lalexk-ku <lalex-ku@42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 21:37:57 by lalexk-ku         #+#    #+#             */
-/*   Updated: 2021/10/06 22:13:48 by lalexk-ku        ###   ########.fr       */
+/*   Updated: 2021/10/12 20:55:40 by lalexk-ku        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# if __APPLE__
+#  define IS_MACOS 1
+# else
+#  define IS_MACOS 0
+# endif
 
 # include "libft/libft.h"
 # include <stdarg.h>

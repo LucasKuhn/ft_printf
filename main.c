@@ -6,7 +6,7 @@
 /*   By: lalexk-ku <lalex-ku@42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:11:47 by lalexk-ku         #+#    #+#             */
-/*   Updated: 2021/10/11 20:44:35 by lalexk-ku        ###   ########.fr       */
+/*   Updated: 2021/10/12 20:21:25 by lalexk-ku        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main()
 	ft_printf("42 | String null	->(%s)\n", NULL);
 	og_printf("og | Pointer		->(%p)\n", str);
 	ft_printf("42 | Pointer		->(%p)\n", str);
+	og_printf("og | Pointer		->(%p)(%p)\n", 0,0);
+	ft_printf("42 | Pointer		->(%p)(%p)\n", 0,0);
 	og_printf("og | Pointer		->(%p)\n", 1);
 	ft_printf("42 | Pointer		->(%p)\n", 1);
 	og_printf("og | Pointer		->(%p)\n", -1);
